@@ -1,0 +1,26 @@
+{
+  "name": "not-reddit",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BBrier14/not-reddit.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BBrier14/not-reddit/issues"
+  },
+  "homepage": "https://github.com/BBrier14/not-reddit#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-handlebars": "^3.1.0",
+    "mysql2": "^2.0.0",
+    "sequelize": "^5.21.2"
+  }
+}
