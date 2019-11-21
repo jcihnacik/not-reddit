@@ -1,0 +1,33 @@
+.jumbotron {
+  background-color: white;
+  text-align: center;
+}
+
+img {
+  height: 1200px;
+  width: 1200px;
+  margin-top: -285px;
+  margin-left: 15%;
+}
+
+.btn {
+  margin-top: -700px;
+  background-color: #fa8b03;
+  border-radius: 42px;
+  border: 3px solid #ffa200;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  font-family: Arial;
+  font-size: 20px;
+  padding: 16px 31px;
+  text-decoration: none;
+  text-shadow: 0px 0px 0px #cc9f52;
+}
+.btn:hover {
+  background-color: #fb9e25;
+}
+.btn:active {
+  position: relative;
+  top: 1px;
+}
