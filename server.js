@@ -24,6 +24,7 @@ app.use(express.static("public"));
 // Routes
 // =============================================================
 require("./routes/posts-routes")(app)
+require("./routes/html-routes")(app)
 require("./routes/user-routes")(app)
 require("./routes/squeek-routes")(app)
 
