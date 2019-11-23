@@ -1,4 +1,6 @@
 $(document).ready(function(){
+    event.preventDefault();
+
     var userInput = $("#user-name");
     var userList = $("tbody");
     var userContainer = $(".user-container");

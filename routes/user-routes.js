@@ -6,7 +6,7 @@ module.exports = function(app) {
   // This route will search the DB and find all writers
   app.get("/api/users", function(req, res) {
     db.Users.findAll({
-      include: [db.Post]
+      include: [db.User]
     }).then(function(dbUser) {
       res.json(dbUser);
     });
