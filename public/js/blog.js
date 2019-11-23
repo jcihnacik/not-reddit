@@ -29,7 +29,7 @@ $(document).ready(function () {
         getPosts();
     }
 
-    function getPosts(author) {
+    function getPosts(user) {
         userId = user || "";
         if (userId) {
             userId = "/?user_id=" + userId;
