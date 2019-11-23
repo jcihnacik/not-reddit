@@ -15,6 +15,7 @@ $(document).ready(function () {
 
     if (url.indexOf("?post_id=") !== -1) {
         postId = url.split("=")[1];
+        console.log(postId);
         getPostData(postId, "post");
     }
     // Otherwise if we have an author_id in our url, preset the author select box to be our Author
@@ -55,45 +56,48 @@ $(document).ready(function () {
     function submitPost(post) {
         $.post("/api/posts", post, function () {
             window.location.href = "/blog";
-        });
+        }).then(function (res) {
+            console.log(res)
+        })
     }
 
     function getPostData(id, type) {
         var queryUrl;
         switch (type) {
-        case "post":
-            queryUrl = "/api/posts/" + id;
-            break;
-        case "user":
-            queryUrl = "api/users/" + id;
-            break;
-        default:
-            return;
+            case "post":
+                queryUrl = "/api/posts/" + id;
+                break;
+            case "user":
+                queryUrl = "api/users/" + id;
+                break;
+            default:
+                return;
         }
-    }
-        $.get(queryUrl, function(data){
-        if (data) {
-            console.log(data.UserId || data.id);
+        $.get(queryUrl, function (data) {
+            if (data) {
+                console.log(data.UserId || data.id);
 
-            titleInput.val(data.title);
-            bodyInput.val(data.body);
-            userId = data.UserId || data.id;
-            updating = true;
-        
-        }
-    });
-    
-    function getUsers(){
+                titleInput.val(data.title);
+                bodyInput.val(data.body);
+                userId = data.UserId || data.id;
+                updating = true;
+
+            }
+        })
+
+    };
+
+    function getUsers() {
         $.get("/api/users", renderUserList);
     }
-    
-    function renderUserList(data){
-        if(!data.length){
+
+    function renderUserList(data) {
+        if (!data.length) {
             window.location.href = "/users";
         }
         $(".hidden").removeClass("hidden");
         var rowsToAdd = [];
-        for (var i = 0; i < data.length; i++){
+        for (var i = 0; i < data.length; i++) {
             rowsToAdd.push(createUserRow(data[i]));
         }
         userSelect.empty();
@@ -110,13 +114,13 @@ $(document).ready(function () {
         return listOption;
     }
 
-    function updatePost(post){
+    function updatePost(post) {
         $.ajax({
             method: "PUT",
             url: "/api/posts",
             data: post
         })
-            .then(function(){
+            .then(function () {
                 window.location.href = "/blog"
             })
     }

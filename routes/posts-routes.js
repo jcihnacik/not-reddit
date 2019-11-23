@@ -5,12 +5,12 @@ var db = require("../models");
 // rout for getting all the post.
 module.exports = function(app) {
   app.get("/api/posts", function(req, res) {
-    var query = {};
-    if (req.query.user_id) {
-      query.UserId = req.query.user_id;
-    }
+    // var query = {};
+    // if (req.query.user_id) {
+    //   query.UserId = req.query.user_id;
+    // }
     db.Post.findAll({
-      where: query,
+    //   where: query,
       include: [db.User]
     }).then(function(dbPost) {
       res.json(dbPost);
@@ -31,7 +31,7 @@ module.exports = function(app) {
 
   // Post route for saving a new post
   app.post("/api/posts", function(req, res) {
-    db.Post.create(req.body).then(function(dbPost) {
+    db.Post.create({title:req.body.title,body:req.body.body}).then(function(dbPost) {
       res.json(dbPost);
     });
   });
