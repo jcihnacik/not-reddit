@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    var squeekContainer = $(".squeek-container");
+    var squeekContainer = $(".squeek-table-section");
 
     var squeeks;
 
@@ -25,7 +25,7 @@ $(document).ready(function() {
             } else {
                 initializeSqueekRows();
             }
-        });
+        }).then(getPosts);
     }
 
     function initializeSqueekRows() {
@@ -57,21 +57,7 @@ $(document).ready(function() {
         newSqueekCard.append(newSqueekCardBody);
         newSqueekCard.data("squeek", squeek);
         return newSqueekCard;
-    }
-
-    var postContainer = $(".post-container");
-    var postCategorySelect = $("#category");
-
-    var posts;
-
-    var url = window.location.search;
-    var userId;
-    if (url.indexOf("?user_id=") !== -1) {
-        userId = url.split("=")[1];
-        getPosts(userId);
-    } else {
-        getSqueeks();
-    }
+    };
 
     function getPosts(user){
         userId = user || "";
@@ -87,7 +73,7 @@ $(document).ready(function() {
                 initializePostRows();
             }
         });
-    }
+    };
 
     function initializePostRows() {
         postContainer.empty();
@@ -96,7 +82,7 @@ $(document).ready(function() {
             postssToAdd.push(createNewPostRow(posts[i]));
         }
         postContainer.append(postsToAdd);
-    }
+    };
 
     function createNewPostRow(post) {
         var formattedDate = new Date(post.createdAt);
@@ -105,17 +91,12 @@ $(document).ready(function() {
         newPostCard.addClass("card");
         var newPostCardHeading = $("<div>");
         newPostCardHeading.addClass("card-header");
-        var deleteBtn = $("<button>");
-        deleteBtn.text("x");
-        deleteBtn.addClass("delete btn btn-danger");
-        var editBtn = $("<button>");
-        editBtn.text("EDIT");
-        editBtn.addClass("edit btn btn-info");
+    
         var newPostTitle = $("<h2>");
         var newPostDate = $("<small>");
-        var newPostAuthor = $("<h5>");
-        newPostAuthor.text("Written by: " + post.Author.name);
-        newPostAuthor.css({
+        var  newPostUser= $("<h5>");
+        newPostUser.text("Written by: " + post.User.name);
+        newPostUser.css({
           float: "right",
           color: "blue",
           "margin-top":
@@ -128,16 +109,15 @@ $(document).ready(function() {
         newPostBody.text(post.body);
         newPostDate.text(formattedDate);
         newPostTitle.append(newPostDate);
-        newPostCardHeading.append(deleteBtn);
-        newPostCardHeading.append(editBtn);
+        
         newPostCardHeading.append(newPostTitle);
-        newPostCardHeading.append(newPostAuthor);
+        newPostCardHeading.append(newPostUser);
         newPostCardBody.append(newPostBody);
         newPostCard.append(newPostCardHeading);
         newPostCard.append(newPostCardBody);
         newPostCard.data("post", post);
         return newPostCard;
-      }
+      };
     
 
     

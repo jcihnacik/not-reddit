@@ -5,13 +5,8 @@ const db = require("../models");
 module.exports = function(app) {
   // This route will search the DB and find all writers
   app.get("/api/users", function(req, res) {
-<<<<<<< HEAD
-    db.Users.findAll({
-      include: [db.User]
-=======
     db.User.findAll({
       include: [db.Post]
->>>>>>> 9b03c5f2144029b20167a7513221451e30196bed
     }).then(function(dbUser) {
       res.json(dbUser);
     });
