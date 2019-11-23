@@ -1,7 +1,6 @@
 $(document).ready(function(){
-    event.preventDefault();
 
-    var userInput = $("#user-name");
+    var nameInput = $("#user-name");
     var userList = $("tbody");
     var userContainer = $(".user-container");
 
@@ -19,15 +18,15 @@ $(document).ready(function(){
             return;
         }
         upsertUser({
-            name: userInput
-            .val()
-            .trim()
+            name: nameInput
+                .val()
+                .trim()
         });
     }
 
     function upsertUser(userData){
         $.post("/api/users", userData)
-        .then(getUsers);
+            .then(getUsers);
     }
 
     function createUserRow(userData) {
@@ -40,7 +39,7 @@ $(document).ready(function(){
             newTr.append("<td>0</td>");
         }
         newTr.append("<td><a href='/blog?user_id=" + userData.id + "'Go to Posts</a></td>");
-        newTr.append("<td><a href='/cms?user_id=" + userData.id + "'Create a Post</a></td>");
+        newTr.append("<td><a href='/cnb?user_id=" + userData.id + "'Create a Post</a></td>");
         newTr.append("<td><a style='curser:pointer;color:red' class ='delete-user'>Delete User</a></td>");
         return newTr;
     }
