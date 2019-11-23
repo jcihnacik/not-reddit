@@ -5,7 +5,7 @@ const db = require("../models");
 module.exports = function(app) {
   // This route will search the DB and find all writers
   app.get("/api/users", function(req, res) {
-    db.Users.findAll({
+    db.User.findAll({
       include: [db.Post]
     }).then(function(dbUser) {
       res.json(dbUser);
@@ -14,7 +14,7 @@ module.exports = function(app) {
 
   // This route will search for one writer chosen by the user
   app.get("/api/users/:id", function(req, res) {
-    db.Users.findOne({
+    db.User.findOne({
       where: {
         id: req.params.id
       },
