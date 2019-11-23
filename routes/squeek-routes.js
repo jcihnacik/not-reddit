@@ -1,3 +1,6 @@
+var db = require("../models");
+
+module.exports = function(app){
 app.post("/squeeker", function(req, res) {
   db.Squeek.create(req.body).then(function(dbSqueek) {
     res.json(dbSqueek);
@@ -19,3 +22,4 @@ app.get("/squeeker", function(req, res) {
     res.json(dbSqueek);
   });
 });
+}
